@@ -6,10 +6,15 @@
 /*   By: paromero <paromero@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:40:22 by paromero          #+#    #+#             */
-/*   Updated: 2023/12/11 10:41:00 by paromero         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:35:15 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
+{
+	if (!fd)
+		return (NULL);
+
+}
