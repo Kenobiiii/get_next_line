@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paromero <paromero@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:42:11 by paromero          #+#    #+#             */
-/*   Updated: 2023/12/11 11:38:35 by paromero         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:02:11 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 # define GET_NEXT_LINE_H
 
 char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char const *s1, char const *s2);
+
+size_t	ft_strlen(const char *str);
 
 #endif
