@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paromero <paromero@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:40:22 by paromero          #+#    #+#             */
-/*   Updated: 2023/12/11 12:35:15 by paromero         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:25:27 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	ft_free(char *buffer, char buf)
 {
