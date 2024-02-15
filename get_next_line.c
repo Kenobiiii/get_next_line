@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:40:22 by paromero          #+#    #+#             */
-/*   Updated: 2024/02/01 11:25:27 by paromero         ###   ########.fr       */
+/*   Updated: 2024/02/15 10:21:26 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 char	ft_free(char *buffer, char buf)
 {
-	char	*tmp;
+	char	*temp;
+
 	temp = ft_strjoin(buffer, buf);
 	free(buffer);
 	return (temp);
@@ -26,9 +27,18 @@ char	ft_next(char *buffer)
 }
 
 char	ft_line(char *buffer)
-{}
+{
+	int		i;
+	char	*temp;
 
-char	ft_*read(int fd, char *ret)
+	i = 0;
+	while (buffer[i] != '\n' && buffer[i] != '\0')
+		i++;
+	temp = ft_substr(buffer, 0, i);
+	return (temp);
+}
+
+char	*ft_read(int fd, char *ret)
 {
 	char	buf;
 	int		ret;
@@ -41,9 +51,9 @@ char	ft_*read(int fd, char *ret)
 	buffer = ft_free(buffer, buf);
 	return (buffer);
 }
+
 char	*get_next_line(int fd)
 {
 	if (!fd)
 		return (NULL);
-
 }
