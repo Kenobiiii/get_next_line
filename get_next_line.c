@@ -12,30 +12,37 @@
 
 #include "get_next_line.h"
 
-char	ft_free(char *buffer, char buf)
-{
-	char	*temp;
-
-	temp = ft_strjoin(buffer, buf);
-	free(buffer);
-	return (temp);
-}
-
-char	ft_next(char *buffer)
-{
-	
-}
-
 char	ft_line(char *buffer)
 {
 	int		i;
 	char	*temp;
 
 	i = 0;
+	if(!buffer)
+		return (NULL);
 	while (buffer[i] != '\n' && buffer[i] != '\0')
 		i++;
-	temp = ft_substr(buffer, 0, i);
+	temp = (char *)malloc((i + 2)*sizeof(char));
+	if (!temp)
+		return (NULL);
+	i = 0;
+	while (buffer[i] != '\n' && buffer[i] != '\0')
+	{
+		temp[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] == '\n')
+	{
+		temp[i] = buffer[i];
+		i++;
+	}
+	temp[i] = '\0';
 	return (temp);
+}
+
+char	*ft_save(char	*buffer)
+{
+	
 }
 
 char	*ft_read(int fd, char *ret)
