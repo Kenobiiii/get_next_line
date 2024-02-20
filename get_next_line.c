@@ -12,35 +12,35 @@
 
 #include "get_next_line.h"
 
-char	ft_line(char *buffer)
+char	ft_line(char *str)
 {
 	int		i;
 	char	*temp;
 
 	i = 0;
-	if(!buffer)
+	if(!str)
 		return (NULL);
-	while (buffer[i] != '\n' && buffer[i] != '\0')
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	temp = (char *)malloc((i + 2)*sizeof(char));
 	if (!temp)
 		return (NULL);
 	i = 0;
-	while (buffer[i] != '\n' && buffer[i] != '\0')
+	while (str[i] != '\n' && str[i] != '\0')
 	{
-		temp[i] = buffer[i];
+		temp[i] = str[i];
 		i++;
 	}
-	if (buffer[i] == '\n')
+	if (str[i] == '\n')
 	{
-		temp[i] = buffer[i];
+		temp[i] = str[i];
 		i++;
 	}
 	temp[i] = '\0';
 	return (temp);
 }
 
-char	*ft_save(char	*buffer)
+char	*ft_save(char	*str)
 {
 	int		i;
 	int		j;
