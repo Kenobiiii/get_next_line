@@ -42,25 +42,75 @@ char	ft_line(char *buffer)
 
 char	*ft_save(char	*buffer)
 {
-	
+	int		i;
+	int		j;
+	char	*save;
+
+	i = 0;
+	while(str[i] != '\n' && str[i])
+		i++;
+	if (!str[i])
+	{
+		free(str);
+		return(NULL);
+	}
+	save = (char *)malloc((ft_strlen(str) - i + 1)*sizeof(char));
+	if !save
+		return(NULL);
+	i++;
+	j = 0;
+	while (str[i])
+		save[j++] = str[i++];
+	save[j] = '\0';
+	free(str);
+	return(save);
 }
 
-char	*ft_read(int fd, char *ret)
+char	*ft_read(int fd, char *str)
 {
 	char	buf;
-	int		ret;
+	int		byt;
 
-	ret = read(fd, &buf, 1);
-	if (ret == -1)
-		return (NULL);
-	if (ret == 0)
-		return (buffer);
-	buffer = ft_free(buffer, buf);
-	return (buffer);
+	buff = (char *)malloc((BUFFER_SIZE + 1)*sizeof(char));
+	if (!buff)
+		return(NULL);
+	byt = 1;
+	while (!ft_strchr(str, '\n') && byt != 0)
+	{
+		byt = read(fd, buff, BUFFER_SIZE);
+		if(byt == -1)
+		{
+			free(buff);
+			return(NULL);
+		}
+		buff[byt] = '\0'
+		str = ft_strjoin(str, buff);
+	}
+	free(buff);
+	return(str);
 }
 
 char	*get_next_line(int fd)
 {
-	if (!fd)
-		return (NULL);
+	static char *str;
+	char		*linea;
+
+	str = NULL;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
+	{
+		free(str);
+		str = NULL;
+		return(NULL);
+	}
+	str = ft_read(fd, str);
+	if (!str)
+	{
+		free(str);
+		str = NULL;
+		return(NULL);
+	}
+	linea = ft_line(str);
+	str = ft_save(str);
+	return(linea)
 }
