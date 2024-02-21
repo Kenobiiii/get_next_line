@@ -114,7 +114,7 @@ char	*get_next_line(int fd)
 	str = ft_save(str);
 	return(linea)
 }
-
+/*
 
 int main(int argc, char **argv) {
     int fd;
@@ -139,3 +139,4 @@ int main(int argc, char **argv) {
     close(fd);
     return 0;
 }
+*/
