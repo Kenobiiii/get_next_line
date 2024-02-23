@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:40:22 by paromero          #+#    #+#             */
-/*   Updated: 2024/02/23 10:48:43 by paromero         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:09:22 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ char	*ft_read(int fd, char *str)
 	if (!buff)
 		return (NULL);
 	byt = 1;
+	if (str != NULL)
+	{
+		free(str);
+		str = NULL;
+	}
 	while ((!str || !ft_strchr(str, '\n')) && byt != 0)
 	{
 		byt = read(fd, buff, BUFFER_SIZE);
@@ -72,12 +77,14 @@ char	*ft_save(char	*str)
 
 	i = 0;
 	if (!str)
+		return (NULL);
+	while (str[i] != '\n' && str[i])
+		i++;
+	if (!str[i] || str[i + 1] == '\0')
 	{
 		free(str);
 		return (NULL);
 	}
-	while (str[i] != '\n' && str[i])
-		i++;
 	save = (char *)malloc((ft_strlen(str) - i + 1) * sizeof(char));
 	if (!save)
 		return (NULL);
@@ -95,6 +102,8 @@ char	*get_next_line(int fd)
 	static char		*str;
 	char			*linea;
 
+	if (!str)
+		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 	{
 		free(str);
@@ -114,27 +123,29 @@ char	*get_next_line(int fd)
 }
 /*
 
-int main(int argc, char **argv) {
-    int fd;
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        printf("Usage: %s <filename>\n", argv[0]);
+        return (1);
+    }
+
+    int fd = open(argv[1], O_RDONLY);
+    if (fd == -1)
+    {
+        printf("Error opening file\n");
+        return (1);
+    }
+
     char *line;
-
-    if (argc != 2) {
-        printf("Uso: %s <archivo>\n", argv[0]);
-        return 1;
-    }
-
-    fd = open(argv[1], O_RDONLY);
-    if (fd == -1) {
-        perror("Error al abrir el archivo");
-        return 1;
-    }
-
-    while ((line = get_next_line(fd)) != NULL) {
-        printf("Línea leída: %s\n", line);
+    while (get_next_line(fd, &line) > 0)
+    {
+        printf("%s\n", line);
         free(line);
     }
 
     close(fd);
-    return 0;
+    return (0);
 }
 */
