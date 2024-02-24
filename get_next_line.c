@@ -21,12 +21,7 @@ char	*ft_read(int fd, char *str)
 	if (!buff)
 		return (NULL);
 	byt = 1;
-	if (str != NULL)
-	{
-		free(str);
-		str = NULL;
-	}
-	while ((!str || !ft_strchr(str, '\n')) && byt != 0)
+	while ((!ft_strchr(str, '\n')) && byt != 0)
 	{
 		byt = read(fd, buff, BUFFER_SIZE);
 		if (byt == -1)
@@ -47,7 +42,7 @@ char	*ft_line(char *str)
 	char	*temp;
 
 	i = 0;
-	if (!str)
+	if (!str[i])
 		return (NULL);
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
@@ -102,8 +97,7 @@ char	*get_next_line(int fd)
 	static char		*str;
 	char			*linea;
 
-	if (!str)
-		return (NULL);
+	str = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 	{
 		free(str);
