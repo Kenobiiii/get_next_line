@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:40:22 by paromero          #+#    #+#             */
-/*   Updated: 2024/02/23 12:09:22 by paromero         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:26:16 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_read(int fd, char *str)
 		if (byt == -1)
 		{
 			free(buff);
+			free(str);
 			return (NULL);
 		}
 		buff[byt] = '\0';
@@ -71,11 +72,9 @@ char	*ft_save(char	*str)
 	char	*save;
 
 	i = 0;
-	if (!str)
-		return (NULL);
 	while (str[i] != '\n' && str[i])
 		i++;
-	if (!str[i] || str[i + 1] == '\0')
+	if (!str[i])
 	{
 		free(str);
 		return (NULL);
@@ -94,11 +93,10 @@ char	*ft_save(char	*str)
 
 char	*get_next_line(int fd)
 {
-	static char		*str;
+	static char		*str = NULL;
 	char			*linea;
 
-	str = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
+	if (fd <= 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 	{
 		free(str);
 		str = NULL;
@@ -133,7 +131,7 @@ int main(int argc, char **argv)
     }
 
     char *line;
-    while (get_next_line(fd, &line) > 0)
+    while ((line = get_next_line(fd)) != NULL)
     {
         printf("%s\n", line);
         free(line);
