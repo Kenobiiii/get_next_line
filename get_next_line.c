@@ -27,7 +27,6 @@ char	*ft_read(int fd, char *str)
 		if (byt == -1)
 		{
 			free(buff);
-			free(str);
 			return (NULL);
 		}
 		buff[byt] = '\0';
@@ -45,13 +44,13 @@ char	*ft_line(char *str)
 	i = 0;
 	if (!str[i])
 		return (NULL);
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != '\n' && str[i])
 		i++;
 	temp = (char *)malloc((i + 2) * sizeof(char));
 	if (!temp)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != '\n' && str[i])
 	{
 		temp[i] = str[i];
 		i++;
