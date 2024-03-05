@@ -24,7 +24,7 @@ char	*ft_read(int fd, char *str)
 	while ((!ft_strchr(str, '\n')) && byt != 0)
 	{
 		byt = read(fd, buff, BUFFER_SIZE);
-		if (byt == -1)
+		if (byt <= 0)
 		{
 			free(buff);
 			return (NULL);
