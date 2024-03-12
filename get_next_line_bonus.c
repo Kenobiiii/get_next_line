@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:40:22 by paromero          #+#    #+#             */
-/*   Updated: 2024/03/11 11:20:54 by paromero         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:47:35 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,24 @@ char	*ft_save(char	*str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str[1024] = {NULL};
+	static char	*str[1024];
 	char		*linea;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 	{
-		free(str);
-		str = NULL;
+		free(str[fd]);
+		str[fd] = NULL;
 		return (NULL);
 	}
-	str = ft_read(fd, str);
-	if (!str)
+	str[fd] = ft_read(fd, str[fd]);
+	if (!str[fd])
 	{
-		free(str);
-		str = NULL;
+		free(str[fd]);
+		str[fd] = NULL;
 		return (NULL);
 	}
-	linea = ft_line(str);
-	str = ft_save(str);
+	linea = ft_line(str[fd]);
+	str[fd] = ft_save(str[fd]);
 	return (linea);
 }
 /*
