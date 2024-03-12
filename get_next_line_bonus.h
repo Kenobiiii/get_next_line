@@ -6,22 +6,15 @@
 /*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:42:11 by paromero          #+#    #+#             */
-/*   Updated: 2024/03/11 09:34:12 by paromero         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:03:51 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <ctype.h>
 # include <unistd.h>
-# include <stdio.h>
-# include <string.h>
 # include <stdlib.h>
-# include <stdint.h>
-# include <stdarg.h>
-# include <stdarg.h>
-# include <limits.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
