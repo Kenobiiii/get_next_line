@@ -113,30 +113,32 @@ char	*get_next_line(int fd)
 	return (linea);
 }
 /*
-
 int main(int argc, char **argv)
 {
-    if (argc != 2)
-    {
-        printf("Usage: %s <filename>\n", argv[0]);
-        return (1);
-    }
-
-    int fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
-    {
-        printf("Error opening file\n");
-        return (1);
-    }
-
+    int fd;
     char *line;
-    while ((line = get_next_line(fd)) != NULL)
+    int i = 1;
+
+    while (i < argc)
     {
-        printf("%s\n", line);
-        free(line);
+        fd = open(argv[i], O_RDONLY);
+        if (fd == -1)
+        {
+            printf("Error opening file %s\n", argv[i]);
+            return (1);
+        }
+
+        line = get_next_line(fd);
+        if (line != NULL)
+        {
+            printf("%s\n", line);
+            free(line);
+        }
+
+        close(fd);
+        i++;
     }
 
-    close(fd);
     return (0);
 }
 */
