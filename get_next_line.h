@@ -27,6 +27,6 @@ char	*ft_line(char *str);
 char	*ft_read(int fd, char *str);
 char	*ft_save(char	*str);
 
-size_t	ft_strlen(const char *str);
+int		ft_strlen(char *str);
 
 #endif
