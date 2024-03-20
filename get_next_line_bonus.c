@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:40:22 by paromero          #+#    #+#             */
-/*   Updated: 2024/03/12 09:47:35 by paromero         ###   ########.fr       */
+/*   Updated: 2024/03/20 09:20:28 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,31 +113,31 @@ char	*get_next_line(int fd)
 	return (linea);
 }
 /*
+#include <stdio.h>
+#include <fcntl.h>
+
 int main(int argc, char **argv)
 {
-    int fd;
-    char *line;
-    int i = 1;
-
-    while (i < argc)
+    if (argc < 3)
     {
-        fd = open(argv[i], O_RDONLY);
-        if (fd == -1)
-        {
-            printf("Error opening file %s\n", argv[i]);
-            return (1);
-        }
-
-        line = get_next_line(fd);
-        if (line != NULL)
-        {
-            printf("%s\n", line);
-            free(line);
-        }
-
-        close(fd);
-        i++;
+        printf("Usage: %s <filename1> <filename2> ...\n", argv[0]);
+        return (1);
     }
+
+    char *line;
+	char *line2;
+    int fd1 = open(argv[1], O_RDONLY);
+    int fd2 = open(argv[2], O_RDONLY);
+
+    while (((line = get_next_line(fd1)) != NULL) && ((line2 = get_next_line(fd2)) != NULL))
+    {
+        printf("File1: %s\n", line);
+		printf("File2: %s\n", line2);
+        free(line);
+        free(line2);
+    }
+    close(fd1);
+    close(fd2);
 
     return (0);
 }
