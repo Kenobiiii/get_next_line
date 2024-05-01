@@ -2,7 +2,7 @@
 
 <div align="center">
     <p>Este proyecto consiste en una función que lee la primera línea,</p>
-    <p>si se llama de manera recursiva te lee siempre la siguiente línea.</p>
+    <p>si se llama de manera recursiva te lee siempre la siguiente.</p>
 
 |  Puntuación |
 |:-----------:|
